@@ -1,4 +1,8 @@
+import { useState } from "react";
 export const CardArticle = ({ data, buttonText, handleSave, handleImageError }) => {
+  
+  const {imageError, setImageError} = useState(false);
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full p-5">
       {data?.articles?.map((article, index) => (
@@ -6,7 +10,7 @@ export const CardArticle = ({ data, buttonText, handleSave, handleImageError }) 
           <h1>{article.title}</h1>
           <img
             className="bg-gray-500 rounded-md w-full h-56"
-            src={article.urlToImage}
+            src={imageError ? "../pages/errorImage.jpeg" : article.urlToImage}
             alt="gambar"
             onError={handleImageError}
             width={200}
