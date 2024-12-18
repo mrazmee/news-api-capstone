@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import {CardArticle} from "../components/card-article";
+import { CardArticle } from "../components/card-article";
+import { useDispatch } from "react-redux"; // Import useDispatch untuk dispatch action
+import { saveArticle } from "../redux/savedArticlesSlice"; // Import action saveArticle
 
 const HomePage = () => {
     const [data, setData] = useState([]);
+    const dispatch = useDispatch(); // Hook untuk dispatch action
 
     useEffect(() => {    
         const fetchData = async () => {
@@ -24,12 +27,15 @@ const HomePage = () => {
         fetchData();
     }, []);
 
+    const handleSaveArticle = (article) => {
+        dispatch(saveArticle(article)); // Menyimpan artikel menggunakan Redux
+    }
+
     return (
         <>
-            <CardArticle data={data} buttonText="Save" />
+            <CardArticle data={data} buttonText="Save" handleSave={handleSaveArticle} />
         </>
-    )
-}
+    );
+};
 
-export default HomePage
-
+export default HomePage;

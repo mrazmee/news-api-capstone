@@ -1,36 +1,41 @@
 import { useEffect, useState } from "react";
 import { CardArticle } from "../components/card-article";
+import { useDispatch } from "react-redux"; // Import useDispatch untuk dispatch action
+import { saveArticle } from "../redux/savedArticlesSlice"; // Import action saveArticle
 
-
-
-const indonesiaPage = () => {
+const IndonesiaPage = () => {
     const [data, setData] = useState([]);
-    const fetchDataIndonesia = async () => {
-        try {
-            const response = await fetch('https://newsapi.org/v2/everything?q=indonesia&language=id&sortBy=popularity&apiKey=848fd76700c844e4ae1940be746b1001');
-            const data = await response.json();
-            const filteredArticles = data.articles.filter(article => {
-                return article.title !== '[Removed]' && article.title !== null &&
-                       article.description !== '[Removed]' && article.description !== null &&
-                       article.urlToImage !== '[Removed]' && article.urlToImage !== null;
-            });
-            data.articles = filteredArticles;
-            setData(data);
-        } catch (error) {
-            console.error(error);    
-        }
-    }
+    const dispatch = useDispatch(); // Hook untuk dispatch action
 
     useEffect(() => {
+        const fetchDataIndonesia = async () => {
+            try {
+                const response = await fetch("https://newsapi.org/v2/everything?q=indonesia&language=id&sortBy=popularity&apiKey=848fd76700c844e4ae1940be746b1001");
+                const data = await response.json();
+                const filteredArticles = data.articles.filter((article) => {
+                    return article.title !== '[Removed]' && article.title !== null &&
+                           article.description !== '[Removed]' && article.description !== null &&
+                           article.urlToImage !== '[Removed]' && article.urlToImage !== null;
+                });
+                data.articles = filteredArticles;
+                setData(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
         fetchDataIndonesia();
-    }, [])
+    }, []);
+
+    const handleSaveArticle = (article) => {
+        dispatch(saveArticle(article)); // Menyimpan artikel menggunakan Redux
+    };
 
     return (
         <>
-            <CardArticle data={data} buttonText="Save"/>
+            <CardArticle data={data} buttonText="Save" handleSave={handleSaveArticle} />
         </>
-    )
-}
+    );
+};
 
-export default indonesiaPage
-
+export default IndonesiaPage;

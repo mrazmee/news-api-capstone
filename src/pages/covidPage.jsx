@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import {CardArticle} from "../components/card-article";
+import { CardArticle } from "../components/card-article";
+import { useDispatch } from "react-redux"; // Import useDispatch untuk dispatch action
+import { saveArticle } from "../redux/savedArticlesSlice"; // Import action saveArticle
 
 const CovidPage = () => {
     const [data, setData] = useState([]);
+    const dispatch = useDispatch(); // Hook untuk dispatch action
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,17 +27,15 @@ const CovidPage = () => {
         fetchData();    
     }, []);
 
-    const handleImageError = (e) => {
-        e.target.src = 'https://via.placeholder.com/150'; // Gambar cadangan
-        console.log('Error loading image', e.target.src);
+    const handleSaveArticle = (article) => {
+        dispatch(saveArticle(article)); // Menyimpan artikel menggunakan Redux
     }
 
     return (
         <>
-            <CardArticle data={data} buttonText="Save" handleImageError={handleImageError}/>
+            <CardArticle data={data} buttonText="Save" handleSave={handleSaveArticle} />
         </>
     )
 }
 
-export default CovidPage
-
+export default CovidPage;

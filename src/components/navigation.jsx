@@ -13,8 +13,8 @@ export const Navbar = () => {
                 <li className="text-white flex gap-5">
                     <Link className="hover:underline ease-in-out trasition-all duration-300 cursor-pointer" to="/indonesia">Indonesia</Link>
                     <Link className="hover:underline ease-in-out trasition-all duration-300 cursor-pointer" to="/programming">Programming</Link>
-                    <Link to="/covid">Covid-19</Link>
-                    <Link to="/saved">Saved</Link>
+                    <Link className="hover:underline ease-in-out trasition-all duration-300 cursor-pointer" to="/covid">Covid-19</Link>
+                    <Link className="hover:underline ease-in-out trasition-all duration-300 cursor-pointer" to="/saved">Saved</Link>
                 </li>
             </ul>  
             </div>
