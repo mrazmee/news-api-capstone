@@ -31,13 +31,13 @@ const SavePage = () => {
               <div className="flex gap-4">
                 <button
                   onClick={() => window.open(article.url, '_blank')}
-                  className="px-2 py-2 bg-blue-300 rounded-md"
+                  className="px-2 py-2 bg-red-300 rounded-md hover:bg-red-600"
                 >
-                  Go to article
+                  News page
                 </button>
                 <button
                   onClick={() => handleRemoveArticle(article)}
-                  className="px-2 py-2 bg-red-300 rounded-md"
+                  className="px-2 py-2 bg-blue-300 rounded-md hover:bg-blue-600"
                 >
                   Remove
                 </button>

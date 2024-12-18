@@ -21,13 +21,13 @@ export const CardArticle = ({ data, buttonText, handleSave, handleImageError }) 
           <div className="flex gap-4">
             <button
               onClick={() => window.open(article.url, '_blank')}
-              className="px-2 py-2 bg-blue-300 rounded-md"
+              className="px-2 py-2 bg-red-300 rounded-md hover:bg-red-600"
             >
               News page
             </button>
             <button
               onClick={() => handleSave(article)} // Trigger handleSave saat tombol di klik
-              className="px-2 py-2 bg-blue-300 rounded-md"
+              className="px-2 py-2 bg-blue-300 rounded-md hover:bg-blue-600"
             >
               {buttonText}
             </button>
